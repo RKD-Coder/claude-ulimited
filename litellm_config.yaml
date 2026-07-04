@@ -1,0 +1,36 @@
+litellm_settings:
+  # Drops Claude-specific parameters that cause 404s on NVIDIA endpoints
+  drop_params: true
+  # Caps output tokens to a safe limit for NVIDIA
+  max_tokens: 4096
+
+general_settings:
+  # This is the key Claude Desktop (and Claude Code) must send as the
+  # Authorization: Bearer <key> value. Pick your own string.
+  master_key: sk-litellm-my-local-key
+
+model_list:
+  - model_name: claude-opus-4-8
+    litellm_params:
+      model: nvidia_nim/z-ai/glm-5.2
+      api_key: "Your-Nvdia-Api-Key"
+      rpm: 40
+
+  - model_name: claude-sonnet-5
+    litellm_params:
+      model: nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b
+      # Hardcode your key here so PowerShell doesn't lose it
+      api_key: "Your-Nvdia-Api-Key"
+      rpm: 40
+
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: nvidia_nim/deepseek-ai/deepseek-v4-pro
+      api_key: "Your-Nvdia-Api-Key"
+      rpm: 40
+
+  - model_name: claude-haiku-4-5
+    litellm_params:
+      model: nvidia_nim/minimaxai/minimax-m3
+      api_key: "Your-Nvdia-Api-Key"
+      rpm: 40

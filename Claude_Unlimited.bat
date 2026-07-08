@@ -101,6 +101,10 @@ echo       api_key: "os.environ/NVIDIA_API_KEY"
 echo       rpm: 40
 ) > litellm_config.yaml
 
+:: Inject the variables into the current environment so the new window inherits them!
+set "NVIDIA_API_KEY=!NVIDIA_KEY!"
+set "NVIDIA_NIM_API_KEY=!NVIDIA_KEY!"
+
 :: 6. Start LiteLLM in a NEW WINDOW
 echo Starting LiteLLM Gateway Server on port 4000...
 start "LiteLLM Server" /d "%~dp0" cmd /k litellm --config litellm_config.yaml --port 4000
@@ -121,7 +125,7 @@ echo =================================================================
 echo                      GATEWAY ONLINE PANEL
 echo =================================================================
 echo Gateway URL : http://localhost:4000
-echo Master API  : sk-litellm-my-local-key
+echo Gateway API  : sk-litellm-my-local-key
 echo NVIDIA Key  : !NVIDIA_KEY!
 echo.
 echo Active Local Models Mapped to NVIDIA NIM:
